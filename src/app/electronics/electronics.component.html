@@ -1,0 +1,25 @@
+<body>
+
+<select [(ngModel)]= "selectedCategory" >
+  <option *ngFor='let category of categories' value={{category.id}}>{{category.item}}</option>
+</select>
+<button (click)='getSelectedItems()' class="button button2">Find</button>
+<br />
+<button (click)='getAllItemsAndParents()' class="button button2">All Items</button>
+<br />
+<!-- {{selectedCategory}} -->
+<br />
+
+<table >
+  <thead>
+    <td>Category</td>
+    <td>Item</td>
+  </thead>
+  <tbody *ngFor="let item of items | paginate: { itemsPerPage: 5, currentPage: p }">
+    <tr><td>{{item['parent']}}</td><td>{{item['child']}}</td></tr>
+  </tbody>
+</table>
+<footer>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+</footer>
+</body>

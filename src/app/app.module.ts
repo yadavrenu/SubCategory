@@ -1,18 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
+import { NgModule, Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { ElectronicsComponent } from './electronics/electronics.component';
+import { ApiCallsService } from './api-calls.service';
+import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
 
-
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ElectronicsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    NgxPaginationModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        component: ElectronicsComponent
+      }
+      ])
   ],
-  providers: [],
+  providers: [ApiCallsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
